@@ -8,6 +8,9 @@ defaults
     timeout client 50000ms
     timeout server 50000ms
 
+    stats enable
+    stats uri /?stats
+
 listen http-in
     bind *:80{{range service "hellodb"}}
     server {{.ID}} {{.Address}}:{{.Port}}{{end}}
