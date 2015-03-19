@@ -11,7 +11,7 @@ http {
 {{range $index, $service := services}}{{range $tag, $services := service $service.Name | byTag}}{{if eq "http" $tag}}
     server {
 	listen 		80;
-	server_name 	{{$service.Name}};
+	server_name 	{{$service.Name}}.*;
 
 	location / {
 	    proxy_pass 		http://{{$service.Name}};
