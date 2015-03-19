@@ -3,7 +3,7 @@ http {
 
     upstream {{$service.Name}} {
 	least_conn;
-	{{range $services}} server {{.Name}} {{.Address}}:{{.Port}} max_fails=3 fail_timeout=60 weight=1;
+	{{range $services}}server {{.Address}}:{{.Port}} max_fails=3 fail_timeout=60 weight=1;
 	{{end}}
     }
 {{end}}{{end}}{{end}}

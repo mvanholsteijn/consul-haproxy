@@ -11,4 +11,4 @@ ADD nginx.ctmpl /nginx.ctmpl
 EXPOSE 80
 
 ENTRYPOINT ["/consul-template"]
-CMD ["-consul", "consul:8500", "-template", "/nginx.ctmpl:/etc/nginx/nginx.cfg:service nginx reload"]
+CMD ["-consul", "consul:8500", "-template", "/nginx.ctmpl:/etc/nginx/nginx.conf:service nginx status || service nginx start && service nginx reload"]
