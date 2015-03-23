@@ -7,8 +7,9 @@ ADD https://github.com/hashicorp/consul-template/releases/download/v0.7.0/consul
 RUN tar xzvf /consul-template_0.7.0_linux_amd64.tar.gz --strip-components=1 && rm /consul-template_0.7.0_linux_amd64.tar.gz
 
 ADD nginx.ctmpl /nginx.ctmpl
+ADD index.html  /www/index.html
 
 EXPOSE 80
 
 ENTRYPOINT ["/consul-template"]
-CMD ["-consul", "consul:8500", "-template", "/nginx.ctmpl:/etc/nginx/nginx.conf:service nginx status ||if service nginx status >/dev/null; then service nginx reload ; else service nginx start ; fi"]
+CMD ["-consul", "consul.service.consul:8500", "-template", "/nginx.ctmpl:/etc/nginx/nginx.conf:service nginx status ||if service nginx status >/dev/null; then service nginx reload ; else service nginx start ; fi"]
